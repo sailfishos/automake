@@ -1,12 +1,12 @@
 Name: automake
 Summary: A GNU tool for automatically creating Makefiles
-Version: 1.11.1
-Release: 3
+Version: 1.13.1
+Release: 1
 Group: Development/Tools
 License: GPLv2+ and GFDL and MIT
 URL: http://www.gnu.org/software/automake/
 Sources:
-    - http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.bz2
+    - http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.xz
     - filter-provides-automake.sh
     - filter-requires-automake.sh
     - automake.man
