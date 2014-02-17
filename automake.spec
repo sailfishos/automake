@@ -20,6 +20,7 @@ Source3:    automake.man
 Source4:    aclocal.man
 Source5:    automake-rpmlintrc
 Source100:  automake.yaml
+Patch0:     automake-1.11.1-aarch64.patch
 Requires:   autoconf >= 2.62
 BuildRequires:  autoconf >= 2.62
 
@@ -38,6 +39,7 @@ GNU's Autoconf package.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1
 
 # >> setup
 # << setup

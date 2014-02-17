@@ -1,3 +1,6 @@
+* Mon Feb 17 2014 Oleg Girko <oleg.girko@jolla.com> - 1.11.1
+- Add aarch64 support
+
 * Fri Apr 20 2012 Marko Saukko <sage@merproject.org> - 1.11.1
 - Fixes MER#251: automake spec file has invalid URL entry
 - Added .yaml for spectacle
