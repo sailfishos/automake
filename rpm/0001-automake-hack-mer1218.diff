@@ -1,0 +1,30 @@
+diff -purN automake/lib/config.guess automake-izh/lib/config.guess
+--- automake/lib/config.guess	2016-05-15 12:57:52.449946557 -0400
++++ automake-izh/lib/config.guess	2016-07-21 07:55:42.896437476 -0400
+@@ -915,13 +915,19 @@ EOF
+ 	then
+ 	    echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+ 	else
+-	    if echo __ARM_PCS_VFP | $CC_FOR_BUILD -E - 2>/dev/null \
+-		| grep -q __ARM_PCS_VFP
+-	    then
+-		echo ${UNAME_MACHINE}-unknown-linux-${LIBC}eabi
+-	    else
+-		echo ${UNAME_MACHINE}-unknown-linux-${LIBC}eabihf
+-	    fi
++# HACK! A temporarily hack. See MER#1218.
++# The problem is that our RPM doesn't have macros directory for *-eabihf
++# platform. So it can't find macros file at all that breaks build of some
++# packages. The correct solution is to upgrade RPM version that is a bit
++# complex task. Please remove this hack after RPM upgrade.
++#	    if echo __ARM_PCS_VFP | $CC_FOR_BUILD -E - 2>/dev/null \
++#		| grep -q __ARM_PCS_VFP
++#	    then
++#		echo ${UNAME_MACHINE}-unknown-linux-${LIBC}eabi
++#	    else
++#		echo ${UNAME_MACHINE}-unknown-linux-${LIBC}eabihf
++#	    fi
++	    echo ${UNAME_MACHINE}-unknown-linux-${LIBC}eabi
+ 	fi
+ 	exit ;;
+     avr32*:Linux:*:*)
