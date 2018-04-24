@@ -10,6 +10,9 @@ Source0:    http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.xz
 Source1:    automake-rpmlintrc
 Patch1:     0001-automake-hack-mer1218.diff
 Requires:   autoconf >= 2.65
+Requires:   perl
+Requires:   perl-threads
+Requires:   perl-threads-shared
 BuildRequires:  autoconf >= 2.65
 BuildRequires:  bison
 BuildRequires:  texinfo
