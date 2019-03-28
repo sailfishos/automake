@@ -1,6 +1,6 @@
 Name:       automake
 Summary:    A GNU tool for automatically creating Makefiles
-Version:    1.15
+Version:    1.16.1
 Release:    1
 Group:      Development/Tools
 License:    GPLv2+ and GFDL and MIT
@@ -8,13 +8,13 @@ BuildArch:  noarch
 URL:        http://www.gnu.org/software/automake/
 Source0:    http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.xz
 Source1:    automake-rpmlintrc
-Patch1:     0001-automake-hack-mer1218.diff
 Requires:   autoconf >= 2.65
 Requires:   perl
 Requires:   perl-threads
 Requires:   perl-threads-shared
 BuildRequires:  autoconf >= 2.65
 BuildRequires:  bison
+BuildRequires:  coreutils
 BuildRequires:  texinfo
 BuildRequires:  xz
 
@@ -30,15 +30,8 @@ GNU's Autoconf package.
 %prep
 %setup -q -n %{name}-%{version}/%{name}
 
-# HACK! A temporarily hack. See MER#1218.
-# The problem is that our RPM doesn't have macros directory for *-eabihf
-# platform. So it can't find macros file at all that breaks build of some
-# packages. The correct solution is to upgrade RPM version that is a bit
-# complex task. Please remove this hack after RPM upgrade.
-%patch1 -p1
-
 %build
-./bootstrap.sh
+./bootstrap
 %configure --docdir=%{_docdir}/%{name}-%{version}
 
 make %{?_smp_mflags}
@@ -47,8 +40,6 @@ mv -f NEWS NEWS_
 iconv -f ISO_8859-15 -t UTF-8 NEWS_ -o NEWS
 
 %install
-rm -rf %{buildroot}
-rm -rf ${RPM_BUILD_ROOT}
 
 %make_install
 install -m644 AUTHORS COPYING NEWS README THANKS %{buildroot}%{_docdir}/%{name}-%{version}
