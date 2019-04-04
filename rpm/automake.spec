@@ -17,6 +17,7 @@ BuildRequires:  bison
 BuildRequires:  coreutils
 BuildRequires:  texinfo
 BuildRequires:  xz
+Patch0:    treat_all_32bit_arms_as_eabi.patch
 
 %description
 Automake is a tool for automatically generating `Makefile.in'
@@ -29,6 +30,7 @@ GNU's Autoconf package.
 
 %prep
 %setup -q -n %{name}-%{version}/%{name}
+%patch0 -p1
 
 %build
 ./bootstrap
