@@ -2,30 +2,30 @@ diff --git a/lib/config.guess b/lib/config.guess
 index 256083a70..40fdd5e96 100755
 --- a/lib/config.guess
 +++ b/lib/config.guess
-@@ -2,7 +2,7 @@
- # Attempt to guess a canonical system name.
- #   Copyright 1992-2018 Free Software Foundation, Inc.
+@@ -4,7 +4,7 @@
  
--timestamp='2018-03-08'
-+timestamp='2019-04-04'
+ # shellcheck disable=SC2006,SC2268 # see below for rationale
+ 
+-timestamp='2021-06-03'
++timestamp='2022-11-13'
  
  # This file is free software; you can redistribute it and/or modify it
  # under the terms of the GNU General Public License as published by
-@@ -923,19 +923,30 @@ EOF
- 	exit ;;
+@@ -992,19 +992,30 @@ EOF
+ 	;;
      arm*:Linux:*:*)
- 	eval "$set_cc_for_build"
+ 	set_cc_for_build
 -	if echo __ARM_EABI__ | $CC_FOR_BUILD -E - 2>/dev/null \
 -	    | grep -q __ARM_EABI__
 -	then
--	    echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
+-	    GUESS=$UNAME_MACHINE-unknown-linux-$LIBC
 -	else
 -	    if echo __ARM_PCS_VFP | $CC_FOR_BUILD -E - 2>/dev/null \
 -		| grep -q __ARM_PCS_VFP
 -	    then
--		echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"eabi
+-		GUESS=$UNAME_MACHINE-unknown-linux-${LIBC}eabi
 -	    else
--		echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"eabihf
+-		GUESS=$UNAME_MACHINE-unknown-linux-${LIBC}eabihf
 -	    fi
 -	fi
 +	## With GCC 4.9 arm*-*-gnu is gone (see JB#45154), the compiler
@@ -41,17 +41,17 @@ index 256083a70..40fdd5e96 100755
 +	# if echo __ARM_EABI__ | $CC_FOR_BUILD -E - 2>/dev/null \
 +	#     | grep -q __ARM_EABI__
 +	# then
-+	#     echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
++	#     GUESS=$UNAME_MACHINE-unknown-linux-$LIBC
 +	# else
 +	#     if echo __ARM_PCS_VFP | $CC_FOR_BUILD -E - 2>/dev/null \
 +	# 	| grep -q __ARM_PCS_VFP
 +	#     then
-+	# 	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"eabi
++	# 	GUESS=$UNAME_MACHINE-unknown-linux-${LIBC}eabi
 +	#     else
-+	# 	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"eabihf
++	# 	GUESS=$UNAME_MACHINE-unknown-linux-${LIBC}eabihf
 +	#     fi
 +	# fi
-+	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"eabi
- 	exit ;;
++	GUESS=$UNAME_MACHINE-unknown-linux-${LIBC}eabi
+ 	;;
      avr32*:Linux:*:*)
- 	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
+ 	GUESS=$UNAME_MACHINE-unknown-linux-$LIBC
