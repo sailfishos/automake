@@ -1,8 +1,7 @@
 Name:       automake
 Summary:    A GNU tool for automatically creating Makefiles
-Version:    1.16.1
+Version:    1.16.5
 Release:    1
-Group:      Development/Tools
 License:    GPLv2+ and GFDL and MIT
 BuildArch:  noarch
 URL:        http://www.gnu.org/software/automake/
@@ -15,9 +14,9 @@ Requires:   perl-threads-shared
 BuildRequires:  autoconf >= 2.65
 BuildRequires:  bison
 BuildRequires:  coreutils
+BuildRequires:  gnu-gzip
 BuildRequires:  texinfo
 BuildRequires:  xz
-Patch0:    treat_all_32bit_arms_as_eabi.patch
 
 %description
 Automake is a tool for automatically generating `Makefile.in'
@@ -29,14 +28,13 @@ Makefiles. If you install Automake, you will also need to install
 GNU's Autoconf package.
 
 %prep
-%setup -q -n %{name}-%{version}/%{name}
-%patch0 -p1
+%autosetup -p1 -n %{name}-%{version}/%{name}
 
 %build
 ./bootstrap
 %configure --docdir=%{_docdir}/%{name}-%{version}
 
-make %{?_smp_mflags}
+%make_build
 
 mv -f NEWS NEWS_
 iconv -f ISO_8859-15 -t UTF-8 NEWS_ -o NEWS
