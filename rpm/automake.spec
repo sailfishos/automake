@@ -17,6 +17,7 @@ BuildRequires:  coreutils
 BuildRequires:  gnu-gzip
 BuildRequires:  texinfo
 BuildRequires:  xz
+Patch0:    treat_all_32bit_arms_as_eabi.patch
 
 %description
 Automake is a tool for automatically generating `Makefile.in'
