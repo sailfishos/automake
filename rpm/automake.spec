@@ -1,12 +1,11 @@
 Name:       automake
 Summary:    A GNU tool for automatically creating Makefiles
-Version:    1.16.1
+Version:    1.17.0
 Release:    1
-Group:      Development/Tools
 License:    GPLv2+ and GFDL and MIT
 BuildArch:  noarch
-URL:        http://www.gnu.org/software/automake/
-Source0:    http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.xz
+URL:        https://github.com/sailfishos/automake
+Source0:    %{name}-%{version}.tar.xz
 Source1:    automake-rpmlintrc
 Requires:   autoconf >= 2.65
 Requires:   perl
@@ -29,14 +28,13 @@ Makefiles. If you install Automake, you will also need to install
 GNU's Autoconf package.
 
 %prep
-%setup -q -n %{name}-%{version}/%{name}
-%patch0 -p1
+%autosetup -p1 -n %{name}-%{version}/%{name}
 
 %build
 ./bootstrap
 %configure --docdir=%{_docdir}/%{name}-%{version}
 
-make %{?_smp_mflags}
+%make_build
 
 mv -f NEWS NEWS_
 iconv -f ISO_8859-15 -t UTF-8 NEWS_ -o NEWS
@@ -44,7 +42,7 @@ iconv -f ISO_8859-15 -t UTF-8 NEWS_ -o NEWS
 %install
 
 %make_install
-install -m644 AUTHORS COPYING NEWS README THANKS %{buildroot}%{_docdir}/%{name}-%{version}
+install -m644 AUTHORS NEWS README THANKS %{buildroot}%{_docdir}/%{name}-%{version}
 
 # create this dir empty so we can own it
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/aclocal
@@ -52,7 +50,7 @@ mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/aclocal
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %files
-%defattr(-,root,root,-)
+%license COPYING
 %doc %{_docdir}/%{name}-%{version}
 %{_bindir}/*
 %doc %{_infodir}/*.gz

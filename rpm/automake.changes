@@ -8,13 +8,13 @@
 * Thu Feb 11 2010 Anas Nashif <anas.nashif@intel.com> - 1.11.1
 - Add rpmlint exclusion for devel-file-in-non-devel-package
 
-* Thu Jan 27 2010 Austin Zhang <austin.zhang@intel.com> - 1.11.1
+* Wed Jan 27 2010 Austin Zhang <austin.zhang@intel.com> - 1.11.1
 - Minor update to 1.11.1
 
 * Sun Aug 16 2009 Anas Nashif <anas.nashif@intel.com> - 1.11
 - Update to 1.11
 
-* Thu Feb 11 2009 Austin Zhang <austin.zhang@intel.com> 1.10.2
+* Wed Feb 11 2009 Austin Zhang <austin.zhang@intel.com> 1.10.2
 - Update to latest version.
 
 * Thu Sep 18 2008 Austin Zhang <austin.zhang@intel.com> 1.10.1
@@ -223,7 +223,7 @@
 * Wed Jan  9 2002 Bernhard Rosenkraenzer <bero@redhat.com> 1.5-3
 - Don't use AS_DIRNAME, it doesn't work.
 
-* Tue Jan  7 2002 Jens Petersen <petersen@redhat.com> 1.5-2
+* Mon Jan  7 2002 Jens Petersen <petersen@redhat.com> 1.5-2
 - Patch depout.m4 to handle makefiles passed to make with "-f" (#56624)
 
 * Tue Sep 18 2001 Bernhard Rosenkraenzer <bero@redhat.com> 1.5-1
